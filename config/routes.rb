@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  rott 'welcome#index'
   resources :leaderboards do
     resources :users
   end
