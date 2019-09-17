@@ -5,5 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# scoreboard = Leaderboard.create()
+scoreboard = Leaderboard.create()
 User.create({name: "Nick", score: 800, leaderboard_id: 1 })

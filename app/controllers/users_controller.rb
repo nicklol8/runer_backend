@@ -3,24 +3,27 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
+    this_leaderboard_users = User.where("leaderboard_id = #{params[:leaderboard_id]}").order('score DESC')
 
-    render json: @users
+    render json: {message: "users", users: this_leaderboard_users}
   end
 
   # GET /users/1
   def show
-    render json: @user
+    this_leaderboard_users = User.where("leaderboard_id = #{params[:leaderboard_id]}").find(params[:id])
+
+    render json: this_leaderboard_users
   end
 
   # POST /users
   def create
     @user = User.new(user_params)
+    @user.leaderboard_id = params[:leaderboard_id]
 
     if @user.save
-      render json: @user, status: :created, location: @user
+      render json: @user
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: {message: "Bad Something"}
     end
   end
 
